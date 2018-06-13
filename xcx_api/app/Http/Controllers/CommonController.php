@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PerImage;
 use App\Models\PowerRecord;
+use App\Models\Quote;
 use App\Models\WxUser;
 use App\WXBizDataCrypt;
 use GuzzleHttp\Client;
@@ -49,6 +50,14 @@ class CommonController extends Controller
             }
         }
         return response()->json($response);
+    }
+
+    public function quote(Request $request)
+    {
+        $sum = Quote::all()->count();
+        $rand = rand(1,$sum);
+        $quote = Quote::offset($rand-1)->limit(1)->pluck('contents')->first();
+        return response()->json(['quote' => $quote]);
     }
 
     public function perImage()

@@ -46,14 +46,6 @@ class PunchController extends AuthController
         return response($puch);
     }
 
-    public function quote(Request $request)
-    {
-        $sum = Quote::all()->count();
-        $rand = rand(1,$sum);
-        $quote = Quote::offset($rand-1)->limit(1)->pluck('contents')->first();
-        return response()->json(['quote' => $quote]);
-    }
-
     public function powers(Request $request)
     {
         $powers = PowerRecord::where(['openid' => $this->openid])->sum('num');

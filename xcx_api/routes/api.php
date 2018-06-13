@@ -24,12 +24,12 @@ Route::prefix('yrjj')->group(function () {
 //    Route::delete('wx_users/{id}', 'WxUserController@delete');
     Route::post('login_session', 'CommonController@loginSession');
     Route::post('per_image', 'CommonController@perImage');
+    Route::post('quote', 'CommonController@quote');
     Route::post('update_userinfo', 'WxUserController@updateUserInfo');
     Route::post('wx_steps', 'PunchController@wxSteps');
     Route::post('punch', 'PunchController@punch');
     Route::post('history_steps', 'PunchController@historySteps');
     Route::post('history_punch', 'PunchController@historyPunch');
-    Route::post('quote', 'PunchController@quote');
     Route::post('powers', 'PunchController@powers');
     Route::get('power_record', 'CommonController@powerRecord');
     Route::post('rank', 'RankController@rank');
