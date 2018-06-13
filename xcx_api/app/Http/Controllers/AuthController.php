@@ -20,7 +20,7 @@ class AuthController extends Controller
                 'errcode' => 400,
                 'msg' => '用户未登陆'
             ];
-            return response()->json($response);
+            echo json_encode($response);exit;
         }
         $this->openid = $user->openid;
         $this->sessionKey = $user->session_key;

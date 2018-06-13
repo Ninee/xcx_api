@@ -12,5 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource('quotes', QuoteController::class);
+    $router->resource('per_images', PerImageController::class);
 
 });

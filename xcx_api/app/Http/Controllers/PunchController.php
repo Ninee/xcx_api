@@ -60,9 +60,4 @@ class PunchController extends AuthController
         return response($powers);
     }
 
-    public function powerRecord(Request $request)
-    {
-        $power_record = PowerRecord::orderBy('id', 'desc')->paginate(15);
-        return response($power_record->toJson());
-    }
 }
