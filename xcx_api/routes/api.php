@@ -33,5 +33,6 @@ Route::prefix('yrjj')->group(function () {
     Route::post('powers', 'PunchController@powers');
     Route::get('power_record', 'CommonController@powerRecord');
     Route::post('rank', 'RankController@rank');
+    Route::post('openid_gid', 'RankController@openGid');
 
 });
