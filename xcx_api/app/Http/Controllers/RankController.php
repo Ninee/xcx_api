@@ -22,10 +22,7 @@ class RankController extends AuthController
                 $exist = GroupOpenid::create(['openid' => $this->openid, 'opengid' => $openGid]);
                 return response()->json($exist);
             } else {
-                return response()->json([
-                    'errcode' => '200',
-                    'msg' => '数据已存在'
-                ]);
+                return response()->json($exist);
             }
         } else {
             return response()->json($data);
