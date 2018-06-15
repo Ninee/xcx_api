@@ -14,16 +14,20 @@ class RankController extends AuthController
         $encryptedData = $request->json('encryptedData');
         $iv = $request->json('iv');
         $data = $this->aesdecode($encryptedData, $iv);
-        $openGid = $data['openGId'];
-        $exist = GroupOpenid::where(['openid' => $this->openid, 'opengid' => $openGid])->first();
-        if (!$exist) {
-            $exist = GroupOpenid::create(['openid' => $this->openid, 'opengid' => $openGid]);
-            return response()->json($exist);
+        if ($data['errorCode'] === 0) {
+            $openGid = $data['openGId'];
+            $exist = GroupOpenid::where(['openid' => $this->openid, 'opengid' => $openGid])->first();
+            if (!$exist) {
+                $exist = GroupOpenid::create(['openid' => $this->openid, 'opengid' => $openGid]);
+                return response()->json($exist);
+            } else {
+                return response()->json([
+                    'errcode' => '200',
+                    'msg' => '数据已存在'
+                ]);
+            }
         } else {
-            return response()->json([
-                'errcode' => '200',
-                'msg' => '数据已存在'
-            ]);
+            return response()->json($data);
         }
     }
 
