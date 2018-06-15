@@ -15,7 +15,7 @@ class RankController extends AuthController
         $iv = $request->json('iv');
         $data = $this->aesdecode($encryptedData, $iv);
         if ($data['errorCode'] === 0) {
-            $openGid = $data['openGId'];
+            $openGid = $data['data']['openGId'];
             $exist = GroupOpenid::where(['openid' => $this->openid, 'opengid' => $openGid])->first();
             if (!$exist) {
                 $exist = GroupOpenid::create(['openid' => $this->openid, 'opengid' => $openGid]);
