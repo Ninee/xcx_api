@@ -24,8 +24,8 @@ class PerImageController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('每日图片');
+            $content->description('列表');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class PerImageController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('每日图片');
+            $content->description('编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class PerImageController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('每日图片');
+            $content->description('新增');
 
             $content->body($this->form());
         });
@@ -74,6 +74,8 @@ class PerImageController extends Controller
         return Admin::grid(PerImage::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->disableFilter();
+            $grid->disableExport();
             $grid->image_url('每日图片')->image();
             $grid->created_at('添加时间');
             $grid->updated_at('最后更新时间');

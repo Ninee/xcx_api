@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Quote;
+use App\Models\ProductImage;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -10,8 +10,9 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Illuminate\Support\MessageBag;
 
-class QuoteController extends Controller
+class ProductImageController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +25,8 @@ class QuoteController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('一句话日签');
-            $content->description('列表');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->grid());
         });
@@ -41,7 +42,7 @@ class QuoteController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('一句话日签');
+            $content->header('商品图片');
             $content->description('编辑');
 
             $content->body($this->form()->edit($id));
@@ -57,8 +58,8 @@ class QuoteController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('一句话日签');
-            $content->description('新增');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form());
         });
@@ -71,13 +72,12 @@ class QuoteController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Quote::class, function (Grid $grid) {
+        return Admin::grid(ProductImage::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->disableExport();
-            $grid->disableFilter();
-            $grid->contents('内容');
-            $grid->updated_at('最后更新时间');
+
+            $grid->created_at();
+            $grid->updated_at();
         });
     }
 
@@ -88,13 +88,21 @@ class QuoteController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Quote::class, function (Form $form) {
+        return Admin::form(ProductImage::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->text('contents', '内容');
-            $form->hidden('status', '状态')->default(1);
+            $form->image('image_url', '上传图片');
 //            $form->display('created_at', 'Created At');
-//            $form->display('updated_at', 'Updated At');
+            $form->display('updated_at', '最近更新时间');
+            //保存后回调
+            $form->saved(function (Form $form) {
+                $success = new MessageBag([
+                    'title'   => '提示',
+                    'message' => '保存成功',
+                ]);
+
+                return back()->with(compact('success'));
+            });
         });
     }
 }

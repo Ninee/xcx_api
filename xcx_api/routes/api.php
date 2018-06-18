@@ -24,6 +24,7 @@ Route::prefix('yrjj')->group(function () {
 //    Route::delete('wx_users/{id}', 'WxUserController@delete');
     Route::post('login_session', 'CommonController@loginSession');
     Route::post('per_image', 'CommonController@perImage');
+    Route::post('product_image', 'CommonController@productImage');
     Route::post('quote', 'CommonController@quote');
     Route::post('update_userinfo', 'WxUserController@updateUserInfo');
     Route::post('wx_steps', 'PunchController@wxSteps');

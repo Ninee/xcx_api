@@ -68,6 +68,12 @@ class CommonController extends Controller
         return response()->json(['per_image' => Storage::disk(config('admin.upload.disk'))->url($image_url)]);
     }
 
+    public function productImage()
+    {
+        $image_url = PerImage::where('id', 1)->pluck('image_url')->first();
+        return response()->json(['product_image' => Storage::disk(config('admin.upload.disk'))->url($image_url)]);
+    }
+
     public function powerRecord(Request $request)
     {
         $sessionId = $request->input('sessionId');

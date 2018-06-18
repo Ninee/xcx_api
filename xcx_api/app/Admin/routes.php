@@ -13,5 +13,8 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('quotes', QuoteController::class);
     $router->resource('per_images', PerImageController::class);
-
+    $router->resource('wxusers', WxUserController::class);
+    $router->resource('power_records', PowerRecordController::class);
+    $router->resource('product_images', ProductImageController::class);
+    $router->post('add_powers', 'PowerController@add');
 });

@@ -5,17 +5,17 @@ return [
     /*
      * Laravel-admin name.
      */
-    'name' => 'Laravel-admin',
+    'name' => '小程序管理后台',
 
     /*
      * Logo in admin panel header.
      */
-    'logo' => '<b>Laravel</b> admin',
+    'logo' => '<b>小程序</b> 管理后台',
 
     /*
      * Mini-logo in admin panel header.
      */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>与日俱进</b>',
 
     /*
      * Route configuration.
@@ -42,7 +42,7 @@ return [
     /*
      * Use `https`.
      */
-    'secure' => true,
+    'secure' => false,
 
     /*
      * Laravel-admin auth setting.
@@ -140,7 +140,7 @@ return [
     |               | sidebar-mini                            |
     |---------------------------------------------------------|
      */
-    'layout' => ['sidebar-mini', 'sidebar-collapse'],
+    'layout' => ['sidebar-mini'],
 
     /*
      * Background image in login page
