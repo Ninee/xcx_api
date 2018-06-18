@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PerImage;
 use App\Models\PowerRecord;
+use App\Models\ProductImage;
 use App\Models\Quote;
 use App\Models\WxUser;
 use App\WXBizDataCrypt;
@@ -70,7 +71,7 @@ class CommonController extends Controller
 
     public function productImage()
     {
-        $image_url = PerImage::where('id', 1)->pluck('image_url')->first();
+        $image_url = ProductImage::where('id', 1)->pluck('image_url')->first();
         return response()->json(['product_image' => Storage::disk(config('admin.upload.disk'))->url($image_url)]);
     }
 

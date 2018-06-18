@@ -91,7 +91,7 @@ class ProductImageController extends Controller
         return Admin::form(ProductImage::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('image_url', '上传图片')->uniqueName();
+            $form->image('image_url', '上传图片')->uniqueName()->help('上传宽高为375*250的图片');
 //            $form->display('created_at', 'Created At');
             $form->display('updated_at', '最近更新时间');
             //保存后回调

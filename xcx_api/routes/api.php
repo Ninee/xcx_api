@@ -29,6 +29,7 @@ Route::prefix('yrjj')->group(function () {
     Route::post('update_userinfo', 'WxUserController@updateUserInfo');
     Route::post('wx_steps', 'PunchController@wxSteps');
     Route::post('punch', 'PunchController@punch');
+    Route::post('is_punched', 'PunchController@isPunched');
     Route::post('history_steps', 'PunchController@historySteps');
     Route::post('history_punch', 'PunchController@historyPunch');
     Route::post('powers', 'PunchController@powers');

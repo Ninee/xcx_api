@@ -92,7 +92,7 @@ class PerImageController extends Controller
         return Admin::form(PerImage::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->image('image_url', '上传每日图片');
+            $form->image('image_url', '上传每日图片')->help('上传宽高为750*1334的图片');
         });
     }
 }

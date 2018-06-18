@@ -34,6 +34,21 @@ class PunchController extends AuthController
         return response()->json($result->toArray());
     }
 
+    public function isPunched(Request $request)
+    {
+        $today = date('Y-m-d', time());
+        $punch = Punch::where(['openid' => $this->openid, 'punched_at' => $today])->first();
+        if ($punch) {
+            return response()->json([
+                'code' => 1
+            ]);
+        } else {
+            return response()->json([
+                'code' => -1
+            ]);
+        }
+    }
+
     public function historySteps(Request $request)
     {
         $steps = Punch::where(['openid' => $this->openid])->sum('steps');
