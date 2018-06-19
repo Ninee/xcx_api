@@ -6,6 +6,7 @@ use App\Models\WxUser;
 use App\WXBizDataCrypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 class AuthController extends Controller
 {
@@ -15,7 +16,7 @@ class AuthController extends Controller
     public function __construct(Request $request)
     {
         $sessionId = $request->json('sessionId');
-        Log::info('sessionId:' . $sessionId);
+        Log::info(URL::current() . ',sessionId:' . $sessionId);
         $user = WxUser::where(['session_id' => $sessionId])->first();
         if (!$user) {
             $response = [
