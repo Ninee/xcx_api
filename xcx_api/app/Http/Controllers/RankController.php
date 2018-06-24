@@ -73,9 +73,13 @@ SQL;
 
                 $others = array_diff($all, $diff);
                 $remain = [];
+
                 foreach ($others as $other) {
-                    $user = WxUser::where(['openid' => $other])->first(['openid', 'avatar', 'nick'])->toArray();
-                    $remain[] = $user;
+                    $user = WxUser::where(['openid' => $other])->first(['openid', 'avatar', 'nick']);
+                    if ($user) {
+                        $user = $user->toArray();
+                        $remain[] = $user;
+                    }
                 }
                 $data['rank'] = $rank;
                 $data['others'] = $remain;
