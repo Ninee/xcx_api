@@ -53,6 +53,45 @@ class CommonController extends Controller
         return response()->json($response);
     }
 
+    /**
+     *  获取session_key
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function limitSessionKey(Request $request)
+    {
+        $code = $request->json('code');
+        $client = new Client();
+        $url = 'https://api.weixin.qq.com/sns/jscode2session?appid=' . env('LIMIT_APPID') . '&secret='. env('LIMIT_SECRET') . '&js_code=' . $code .'&grant_type=authorization_code';
+        $res = $client->request('GET', $url);
+        $data = json_decode($res->getBody(), true);
+        $response = [];
+        if (key_exists('errcode', $data)) {
+            $response = $data;
+        } else {
+            $openid = $data['openid'];
+            $session_key = $data['session_key'];
+            $user = WxUser::where(['openid' => $openid])->first();
+//            $response['data'] = $data;
+            if ($user) {
+                $user->openid = $openid;
+                $user->session_key = $session_key;
+                $user->save();
+                $response['session_id'] = $user->session_id;
+            } else {
+                $session_id = md5(env('LIMIT_SECRET') . $openid);
+                $user = new WxUser();
+                $user->appid = env('LIMIT_APPID');
+                $user->openid = $openid;
+                $user->session_key = $session_key;
+                $user->session_id = $session_id;
+                $user->save();
+                $response['session_id'] = $session_id;
+            }
+        }
+        return response()->json($response);
+    }
+
     public function quote(Request $request)
     {
         $sum = Quote::all()->count();

@@ -38,3 +38,13 @@ Route::prefix('yrjj')->group(function () {
     Route::post('openid_gid', 'RankController@openGid');
 
 });
+Route::prefix('limit')->group(function () {
+//    Route::post('wx_users', 'WxUserController@index');
+//    Route::post('wx_users/{id}', 'WxUserController@show');
+//    Route::post('wx_users', 'WxUserController@store');
+//    Route::put('wx_users/{id}', 'WxUserController@update');
+//    Route::delete('wx_users/{id}', 'WxUserController@delete');
+    Route::post('login_session', 'CommonController@limitSessionKey');
+    Route::post('put_limit', 'LimitController@putLimit');
+    Route::post('get_limit', 'LimitController@getLimit');
+});

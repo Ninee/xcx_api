@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function __construct(Request $request)
     {
         $sessionId = $request->json('sessionId');
-        Log::info(URL::current() . ',sessionId:' . $sessionId);
+//        Log::info(URL::current() . ',sessionId:' . $sessionId);
         $user = WxUser::where(['session_id' => $sessionId])->first();
         if (!$user) {
             $response = [
