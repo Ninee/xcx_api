@@ -11,7 +11,11 @@ class LimitController extends AuthController
     {
         $openid = $this->openid;
         $limit = Limit::where(['openid' => $openid])->first();
-        return response()->json($limit);
+        if ($limit) {
+            return response()->json(['limitData' => $limit->limit_data]);
+        } else {
+            return response()->json(['limitData' => []]);
+        }
     }
 
     public function putLimit(Request $request)
