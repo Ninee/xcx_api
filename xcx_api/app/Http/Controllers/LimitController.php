@@ -12,7 +12,7 @@ class LimitController extends AuthController
         $openid = $this->openid;
         $limit = Limit::where(['openid' => $openid])->first();
         if ($limit) {
-            return response()->json(['limitData' => $limit->limit_data]);
+            return response()->json(['limitData' => json_decode($limit->limit_data)]);
         } else {
             return response()->json(['limitData' => []]);
         }
