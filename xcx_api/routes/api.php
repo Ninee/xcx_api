@@ -47,4 +47,5 @@ Route::prefix('limit')->group(function () {
     Route::post('login_session', 'CommonController@limitSessionKey');
     Route::post('put_limit', 'LimitController@putLimit');
     Route::post('get_limit', 'LimitController@getLimit');
+    Route::post('get_ad', 'LimitController@getAd');
 });

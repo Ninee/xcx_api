@@ -16,5 +16,6 @@ Route::group([
     $router->resource('wxusers', WxUserController::class);
     $router->resource('power_records', PowerRecordController::class);
     $router->resource('product_images', ProductImageController::class);
+    $router->resource('ad_banners', AdController::class);
     $router->post('add_powers', 'PowerController@add');
 });

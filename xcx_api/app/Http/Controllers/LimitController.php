@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdBanner;
 use App\Models\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LimitController extends AuthController
 {
@@ -33,5 +35,15 @@ class LimitController extends AuthController
             $limit->save();
         }
         return response()->json($limit);
+    }
+
+    public function getAd()
+    {
+        $ad = AdBanner::where(['appid' => env('LIMIT_APPID')])->first();
+        if ($ad) {
+            return response()->json(['image_url' => Storage::disk(config('admin.upload.disk'))->url($ad->image_url)]);
+        } else {
+            return response()->json(null);
+        }
     }
 }
