@@ -74,7 +74,7 @@ class WxUserController extends Controller
     protected function grid()
     {
         return Admin::grid(WxUser::class, function (Grid $grid) {
-
+            $grid->model()->where('appid', '=', env('YRJJ_APPID'));
 //            $grid->id('ID')->sortable();
             $grid->actions(function ($actions) {
                 $actions->disableDelete();
