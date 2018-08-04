@@ -91,7 +91,7 @@ class AdController extends Controller
 
             $form->display('id', 'ID');
             $form->text('appid', 'appId');
-            $form->image('image_url', '广告图片');
+            $form->image('image_url', '广告图片')->uniqueName();
             $form->display('created_at', '创建时间');
 //            $form->display('updated_at', 'Updated At');
         });
